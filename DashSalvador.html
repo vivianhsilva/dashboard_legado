@@ -1,0 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documento sin título</title>
+    <style>
+        table.sortable tbody tr:nth-child(2n) td {
+            background: #f6f6f6;
+        }
+        
+        table.sortable tbody tr:nth-child(2n+1) td {
+            background: #ffffff;
+        }
+        
+        table.sortable tbody {
+            counter-reset: sortabletablescope;
+        }
+        
+        table.sortable thead tr::before {
+            content: "";
+            display: table-cell;
+        }
+        
+        table.sortable tbody tr::before {
+            content: counter(sortabletablescope);
+            counter-increment: sortabletablescope;
+            display: table-cell;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <table width="1300">
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td width="2%" style="border-bottom: 1px solid #cccccc;">&nbsp;</td>
+                                <td width="20%" height="40" style="border-left: 1px solid #cccccc;border-top: 2px solid #cbdb2a;border-right: 1px solid #cccccc; color:#00984a; font-size:18px;" align="center"><strong>Monitoramento Azure DevOps</strong></td>
+                                <td width="78%" align="right" style="border-bottom: 1px solid #cccccc;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="87%">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="94%" align="right">Parar atualização&nbsp;</td>
+                                                        <td width="6%">
+                                                            <input type="checkbox" id="paraAtualizacao" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td width="13%">
+                                                <div id="div_contagem"></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">
+                    <table width="100%" cellpadding="3" cellspacing="3">
+                        <tr>
+                            <td width="300" align="center" valign="top">
+
+                                <table width="100%">
+                                    <tr>
+                                        <td align="center" style="color:#00984a; font-size:12px;"><strong>Total Deploys </strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" valign="middle" height="50" style="font-size:20px;"><strong><div id="totalDeployhoje"><img src="https://portal2.localiza.com/area/ti/restrito/OPS/indicadores/Paginas/boletim/icones/loading.gif" width="20" /></div></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" valign="middle">
+
+                                            <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                                                <tr>
+                                                    <td width="33%" align="center" valign="middle"><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerm.jpg" /></td>
+                                                    <td width="33%" align="center" valign="middle"><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerde.jpg" /></td>
+                                                    <td width="33%" align="center" valign="middle"><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoAmarelo.jpg" /></td>
+                                                </tr>
+                                                <tr style="font-size:18px;">
+                                                    <td align="center" valign="middle"><strong><div id="totalhojeVermerlho"><img src="https://portal2.localiza.com/area/ti/restrito/OPS/indicadores/Paginas/boletim/icones/loading.gif" width="20" /></div></strong></td>
+                                                    <td align="center" valign="middle"><strong><div id="totalhojeVerde"><img src="https://portal2.localiza.com/area/ti/restrito/OPS/indicadores/Paginas/boletim/icones/loading.gif" width="20" /></div></strong></td>
+                                                    <td align="center" valign="middle"><strong><div id="totalhojeAmarelo"><img src="https://portal2.localiza.com/area/ti/restrito/OPS/indicadores/Paginas/boletim/icones/loading.gif" width="20" /></div></strong></td>
+                                                </tr>
+                                                <tr style="font-size:18px;">
+                                                    <td colspan="3" align="center" valign="middle" style="border-bottom:#00984a 1px solid;">&nbsp;</td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                            <td width="50">&nbsp;</td>
+                            <td width="300" align="center" valign="top">
+
+                                <table width="100%" style="display:none;">
+                                    <tr>
+                                        <td align="center" style="color:#00984a; font-size:12px;"><strong>Total Deploys mês atual<br/>Novembro 2018</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" valign="middle" height="50" style="font-size:20px;"><strong><div id="totalDeployhoje">10</div></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" valign="middle">
+
+                                            <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                                                <tr>
+                                                    <td width="33%" align="center" valign="middle"><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerm.jpg" /></td>
+                                                    <td width="33%" align="center" valign="middle"><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerde.jpg" /></td>
+                                                    <td width="33%" align="center" valign="middle"><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoAmarelo.jpg" /></td>
+                                                </tr>
+                                                <tr style="font-size:18px;">
+                                                    <td align="center" valign="middle"><strong><div id="totalhojeVermerlho"></div></strong></td>
+                                                    <td align="center" valign="middle"><strong><div id="totalhojeVerde"></div></strong></td>
+                                                    <td align="center" valign="middle"><strong><div id="totalhojeAmarelo"></div></strong></td>
+                                                </tr>
+                                                <tr style="font-size:18px;">
+                                                    <td colspan="3" align="center" valign="middle" style="border-bottom:#00984a 1px solid;">&nbsp;</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td align="right" valign="top">
+
+                                <table border="0" cellspacing="2" cellpadding="2">
+                                    <tr>
+                                        <td colspan="2" align="right">
+
+                                            <table border="0" cellspacing="2" cellpadding="2" style="cursor:pointer" onclick="mostraLegenda();">
+                                                <tr>
+                                                    <td><strong>Clique na Legenda:</strong></td>
+                                                    <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerde.jpg" /></td>
+                                                    <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoAmarelo.jpg" /></td>
+                                                    <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerm.jpg" /></td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="right">
+
+                                            <div id="divlegenda" style="display:none;">
+
+                                                <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                                                    <tr>
+                                                        <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerde.jpg" /></td>
+                                                        <td>Deploy Emergencial</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerde.jpg" /></td>
+                                                        <td>Janela Normal</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerde.jpg" /></td>
+                                                        <td>Deploy atraves da Infra</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerde.jpg" /></td>
+                                                        <td>Excecao em janela travada</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoAmarelo.jpg" /></td>
+                                                        <td>Rollback </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerm.jpg" /></td>
+                                                        <td>Sucesso parcial</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="https://portal2.localiza.com/area/ti/PublishingImages/icoVerm.jpg" /></td>
+                                                        <td>Falha no processo de deploy</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="left" valign="top">
+
+                    <p><strong>LOGS</strong></p>
+
+                    <table width="1300" cellpadding="4" cellspacing="4" id="tblDeploy" class="sortable" style="font-size:18px;">
+                        <tbody>
+
+                            <tr style="color:#00984a;">
+                                <th bgcolor="#eeeeee">Data</th>
+                                <th bgcolor="#eeeeee">Hora</th>
+                                <th bgcolor="#eeeeee">Area</th>
+                                <th bgcolor="#eeeeee">Executor</th>
+                                <th bgcolor="#eeeeee">Release Definition</th>
+                                <th bgcolor="#eeeeee" style="display:none;">EnvironmentName</th>
+                                <th bgcolor="#eeeeee">Número da Release</th>
+                                <th bgcolor="#eeeeee" style="display:none;">BuildId</th>
+                                <th bgcolor="#eeeeee">Resultado do Deploy</th>
+                                <th bgcolor="#eeeeee" style="display:none;">ServidoresComFalhaParcial</th>
+                                <th bgcolor="#eeeeee" style="display:none;">DeployRealizado</th>
+                                <th bgcolor="#eeeeee" style="display:none;">Turno</th>
+                                <th bgcolor="#eeeeee" style="display:none;">Dia</th>
+                                <th bgcolor="#eeeeee" style="display:none;">ServidorVerificador</th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+    </center>
+    <input type="hidden" value="mostra" id="mostraOcultaLegenda" />
+
+    <input type="hidden" value="0" id="contador_verde" />
+    <input type="hidden" value="0" id="contador_amarelo" />
+    <input type="hidden" value="0" id="contador_vermelho" />
+
+</body>
+
+</html>
+
+<script src="https://portal2.localiza.com/area/ti/restrito/OPS/indicadores/Paginas/boletim/controller_js/jquery.min.js"></script>
+<script src="https://portal2.localiza.com/area/ti/restrito/OPS/indicadores/Paginas/boletim/controller_js/sortable.js"></script>
+<script>
+    onload = function() {
+
+        chamaCSV();
+
+    };
+
+    // AJAX CHAMA O CSV EM UMA LISTA DO SHAREPOINT    
+    function chamaCSV() {
+
+        $.ajax({
+            url: 'https://portal2.localiza.com/area/ti/MonitoramentoAzureDevOps/IND_DeployAutomatico_POWERBI.csv',
+            dataType: 'text',
+        }).done(successFunction);
+
+    }
+
+    // MONTA A TABELA DE LOGS
+    function successFunction(data) {
+        var allRows = data.split(/\r?\n|\r/);
+
+        var tabela = "";
+        var cssColunaBuildId = "";
+
+        var arrayData = new Array();
+        var contador_1 = 0;
+        var arrayHora = new Array();
+        var contador_2 = 0;
+        var arrayArea = new Array();
+        var contador_3 = 0;
+        var arrayExecutor = new Array();
+        var contador_4 = 0;
+        var arrayReleaseDefinition = new Array();
+        var contador_5 = 0;
+
+        var arrayNumerodaRelease = new Array();
+        var contador_7 = 0;
+        var arrayBuildId = new Array();
+        var contador_8 = 0;
+        var arrayResultadodoDeploy = new Array();
+        var contador_9 = 0;
+
+        // GRAVA OS VERMELHOS AQUI
+        var arrayDataV = new Array();
+        var contador_1V = 0;
+        var arrayHoraV = new Array();
+        var contador_2V = 0;
+        var arrayAreaV = new Array();
+        var contador_3V = 0;
+        var arrayExecutorV = new Array();
+        var contador_4V = 0;
+        var arrayReleaseDefinitionV = new Array();
+        var contador_5V = 0;
+
+        var arrayNumerodaReleaseV = new Array();
+        var contador_7V = 0;
+        var arrayBuildIdV = new Array();
+        var contador_8V = 0;
+        var arrayResultadodoDeployV = new Array();
+        var contador_9V = 0;
+
+        for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+
+            var rowCells = allRows[singleRow].split(',');
+            for (var rowCell = 0; rowCell < rowCells.length; rowCell++) { // rowCells.length
+
+                if (singleRow === 0) {
+
+                    //table += rowCells[rowCell]; // cabeçalho
+                } else {
+
+                    // REMOVE TR QUE NÃO É PARA SER MOSTRADA 
+                    var nomeResultDeploy = $.trim(rowCells[8]);
+                    var contadorStringSucessoParcial = nomeResultDeploy.length;
+                    // ocultar Tentativa invalida de normal 29
+
+                    if (nomeResultDeploy == "Tentativa invalida de normal" || nomeResultDeploy == "Sucesso parcial" || contadorStringSucessoParcial == 16 || contadorStringSucessoParcial == 33 || contadorStringSucessoParcial == 0 || nomeResultDeploy == "Sem aprovacao") {
+                        var mostraOculta = "oculta";
+                    } else {
+                        var mostraOculta = "mostra";
+                    }
+
+                    if (nomeResultDeploy == "Sucesso parcial" || contadorStringSucessoParcial == 16 || contadorStringSucessoParcial == 33) {
+                        var mostraVermelho = "Sim";
+                    } else {
+                        var mostraVermelho = "";
+                    }
+
+                    //var contaString = rowCells[rowCell].length; // verifica o tamanho 
+
+                    // define cor
+                    if (rowCell == 8) {
+
+                        //cssColunaBuildId = cssTdBuildId(rowCells[rowCell]);
+
+                        // CONTA PONTUAÇÃO
+                        geraPonutacao(rowCells[rowCell]); // $.trim()
+
+                    } else {
+                        cssColunaBuildId = "";
+                    }
+
+                    // OCULTA ESTAS COLUNAS
+                    if (rowCell == 5 || rowCell == 8 || rowCell == 9 || rowCell == 10 || rowCell == 11 || rowCell == 12 || rowCell == 13) {
+                        var display = ' style="display:none;"';
+                    } else {
+                        var display = '';
+                    }
+
+                    if (mostraOculta == "mostra") {
+
+                        //tabela += '<td '+cssColunaBuildId+' '+display+'>'+$.trim(rowCells[rowCell])+'</td>';
+
+                        if (rowCell == 0) {
+                            arrayData[contador_1] = $.trim(rowCells[rowCell]);
+                            contador_1++;
+                        }
+
+                        if (rowCell == 1) {
+                            arrayHora[contador_2] = $.trim(rowCells[rowCell]);
+                            contador_2++;
+                        }
+
+                        if (rowCell == 2) {
+                            arrayArea[contador_3] = $.trim(rowCells[rowCell]);
+                            contador_3++;
+                        }
+
+                        if (rowCell == 3) {
+                            arrayExecutor[contador_4] = $.trim(rowCells[rowCell]);
+                            contador_4++;
+                        }
+
+                        if (rowCell == 4) {
+                            arrayReleaseDefinition[contador_5] = $.trim(rowCells[rowCell]);
+                            contador_5++;
+                        }
+
+                        if (rowCell == 6) {
+                            arrayNumerodaRelease[contador_7] = $.trim(rowCells[rowCell]);
+                            contador_7++;
+                        }
+
+                        if (rowCell == 7) {
+                            arrayBuildId[contador_8] = $.trim(rowCells[rowCell]);
+                            contador_8++;
+                        }
+
+                        if (rowCell == 8) {
+                            arrayResultadodoDeploy[contador_9] = $.trim(rowCells[rowCell]);
+                            contador_9++;
+                        }
+
+                    } else {
+                        if (mostraVermelho == "Sim") {
+
+                            if (rowCell == 0) {
+                                arrayDataV[contador_1V] = $.trim(rowCells[rowCell]);
+                                contador_1V++;
+                            }
+
+                            if (rowCell == 1) {
+                                arrayHoraV[contador_2V] = $.trim(rowCells[rowCell]);
+                                contador_2V++;
+                            }
+
+                            if (rowCell == 2) {
+                                arrayAreaV[contador_3V] = $.trim(rowCells[rowCell]);
+                                contador_3V++;
+                            }
+
+                            if (rowCell == 3) {
+                                arrayExecutorV[contador_4V] = $.trim(rowCells[rowCell]);
+                                contador_4V++;
+                            }
+
+                            if (rowCell == 4) {
+                                arrayReleaseDefinitionV[contador_5V] = $.trim(rowCells[rowCell]);
+                                contador_5V++;
+                            }
+
+                            if (rowCell == 6) {
+                                arrayNumerodaReleaseV[contador_7V] = $.trim(rowCells[rowCell]);
+                                contador_7V++;
+                            }
+
+                            if (rowCell == 7) {
+                                arrayBuildIdV[contador_8V] = $.trim(rowCells[rowCell]);
+                                contador_8V++;
+                            }
+
+                            if (rowCell == 8) {
+                                arrayResultadodoDeployV[contador_9V] = $.trim(rowCells[rowCell]);
+                                contador_9V++;
+                            }
+
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
+        var montaTrTd_tabela = "";
+
+        var contadorV = arrayDataV.length;
+        contadorV = contadorV - 1;
+
+        for (var loop = contadorV; loop >= 0; loop--) {
+
+            montaTrTd_tabela += '<tr><td>' + arrayDataV[loop] + '</td><td>' + arrayHoraV[loop] + '</td><td>' + arrayAreaV[loop] + '</td><td>' + arrayExecutorV[loop] + '</td><td>' + arrayReleaseDefinitionV[loop] + '</td><td>' + arrayNumerodaReleaseV[loop] + '</td><td style="font-weight: bold; color:#ffffff;background-color:#7a1d17;">' + arrayResultadodoDeployV[loop] + '</td></tr>';
+
+        }
+
+        var contador = arrayData.length;
+        contador = contador - 1;
+        for (var loop = contador; loop >= 0; loop--) {
+
+            montaTrTd_tabela += '<tr><td>' + arrayData[loop] + '</td><td>' + arrayHora[loop] + '</td><td>' + arrayArea[loop] + '</td><td>' + arrayExecutor[loop] + '</td><td>' + arrayReleaseDefinition[loop] + '</td><td>' + arrayNumerodaRelease[loop] + '</td><td ' + cssTdBuildId(arrayResultadodoDeploy[loop]) + '>' + arrayResultadodoDeploy[loop] + '</td></tr>';
+
+        }
+        $("#tblDeploy tbody").append(montaTrTd_tabela);
+
+        dashboard();
+
+    }
+
+    // MOSTRA OCULTA LEGENDA
+    function mostraLegenda() {
+
+        var mostraOcultaLegenda = document.getElementById("mostraOcultaLegenda").value;
+
+        if (mostraOcultaLegenda == "mostra") {
+            document.getElementById("divlegenda").style.display = "block";
+            document.getElementById("mostraOcultaLegenda").value = "oculta";
+        } else {
+            document.getElementById("divlegenda").style.display = "none";
+            document.getElementById("mostraOcultaLegenda").value = "mostra";
+        }
+    }
+
+    // FUNÇÃO PARA PONTUAÇÃO
+    function geraPonutacao(tipoRegistro) {
+        var ponto = 0;
+
+        var contadorString = tipoRegistro.length;
+
+        // para SEPATAR DEPLOY E ROLLBACK
+        if (tipoRegistro.match("y")) {
+            var temY = "Sim";
+        } else {
+            var temY = "Não";
+        }
+
+        if (contadorString == 19 && temY == "Sim") // "Deploy Emergencial" // AO BUSCAR O TIPO DE RESGISTRO NO CSV ESTA DANDO PROBLEMA COM CARACTERES OCULTOS, POR ISSO CONTAMOS O TAMANHO DA STRING PARA SABERMOS QUAL TIPO É
+        {
+            ponto = parseFloat(document.getElementById("contador_verde").value) + 1;
+            document.getElementById("contador_verde").value = ponto;
+        }
+        if (contadorString == 14) // "Janela Normal"
+        {
+            ponto = parseFloat(document.getElementById("contador_verde").value) + 1;
+            document.getElementById("contador_verde").value = ponto;
+        }
+        if (contadorString == 24 || contadorString == 49) // "Deploy atraves da Infra"
+        {
+            ponto = parseFloat(document.getElementById("contador_verde").value) + 1;
+            document.getElementById("contador_verde").value = ponto;
+        }
+        if (tipoRegistro == "Excecao em janela travada") {
+            ponto = parseFloat(document.getElementById("contador_verde").value) + 1;
+            document.getElementById("contador_verde").value = ponto;
+        }
+        if (contadorString == 19 && temY == "Não") // "Rollback"
+        {
+            ponto = parseFloat(document.getElementById("contador_amarelo").value) + 1;
+            document.getElementById("contador_amarelo").value = ponto;
+        }
+        if (contadorString == 16 || contadorString == 33) // "Sucesso parcial"
+        {
+            ponto = parseFloat(document.getElementById("contador_vermelho").value) + 1;
+            document.getElementById("contador_vermelho").value = ponto;
+        }
+        if (tipoRegistro == "Falha no processo de deploy") {
+            ponto = parseFloat(document.getElementById("contador_vermelho").value) + 1;
+            document.getElementById("contador_vermelho").value = ponto;
+        }
+
+    }
+
+    // DEFINE COR TIPO REGISTRO -  insere css na td da coluna BuildId
+    function cssTdBuildId(tipoRegistro) {
+        var desc = "";
+
+        var contadorString = tipoRegistro.length
+
+        // para SEPATAR DEPLOY E ROLLBACK
+        if (tipoRegistro.match("y")) {
+            var temY = "Sim";
+        } else {
+            var temY = "Não";
+        }
+
+        if (contadorString == 19 && temY == "Sim") // "Deploy Emergencial" // AO BUSCAR O TIPO DE RESGISTRO NO CSV ESTA DANDO PROBLEMA COM CARACTERES OCULTOS, POR ISSO CONTAMOS O TAMANHO DA STRING PARA SABERMOS QUAL TIPO É
+        {
+            desc = 'style="font-weight: bold; color:#ffffff;background-color:#00984a;"';
+        }
+        if (contadorString == 14) // "Janela Normal"
+        {
+            desc = 'style="font-weight: bold; color:#ffffff;background-color:#00984a;"';
+        }
+        if (contadorString == 24 || contadorString == 49) // "Deploy atraves da Infra"
+        {
+            desc = 'style="font-weight: bold; color:#ffffff;background-color:#00984a;"';
+        }
+        if (tipoRegistro == "Excecao em janela travada") {
+            desc = 'style="font-weight: bold; color:#ffffff;background-color:#00984a;"';
+        }
+        if (contadorString == 19 && temY == "Não") // "Rollback"
+        {
+            desc = 'style="font-weight: bold; color:#000000;background-color:#d4dc23;"';
+        }
+        if (contadorString == 16 || contadorString == 33) // "Sucesso parcial"
+        {
+            desc = 'style="font-weight: bold; color:#ffffff;background-color:#7a1d17;"';
+        }
+        if (tipoRegistro == "Falha no processo de deploy") {
+            desc = 'style="font-weight: bold; color:#ffffff;background-color:#7a1d17;"';
+        }
+
+        return (desc);
+    }
+    // MONTA DASHBOARDS DOS TOTAIS
+    function dashboard() {
+
+        var contador_verde = document.getElementById("contador_verde").value;
+        var contador_amarelo = document.getElementById("contador_amarelo").value;
+        var contador_vermelho = document.getElementById("contador_vermelho").value;
+        var contadorTotal = parseFloat(contador_verde) + parseFloat(contador_amarelo) + parseFloat(contador_vermelho);
+
+        document.getElementById("totalDeployhoje").innerHTML = contadorTotal;
+        document.getElementById("totalhojeVerde").innerHTML = contador_verde;
+        document.getElementById("totalhojeAmarelo").innerHTML = contador_amarelo;
+        document.getElementById("totalhojeVermerlho").innerHTML = contador_vermelho;
+
+        // ATUALIZAR A PÁGINA
+        contagem_tempo();
+    }
+    // CONTAGEM REGRESSIVA PARA ATUALIZAR A PÁGINA
+    var segundos = 60;
+
+    function contagem_tempo() {
+
+        document.getElementById("div_contagem").innerHTML = "Atualização:" + segundos;
+
+        segundos = segundos - 1;
+
+        if (segundos == -1) {
+            segundos = 0;
+            var paraAtualizacao = document.getElementById("paraAtualizacao").checked;
+            if (paraAtualizacao == false) {
+                location.reload();
+            }
+
+        }
+
+        timerID = setTimeout("contagem_tempo()", 1000);
+    }
+
+    // FIM CONTAGEM REGRESSIVA
+</script>
